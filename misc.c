@@ -84,6 +84,8 @@ ptr_t GC_stackbottom = 0;
 
 GC_bool GC_dont_gc = 0;
 
+GC_bool GC_dont_push_stack = 0;
+
 GC_bool GC_dont_precollect = 0;
 
 GC_bool GC_quiet = 0; /* used also in pcr_interface.c */
@@ -312,6 +314,9 @@ GC_API void * GC_CALL GC_clear_stack(void *arg)
                                  /* chunk.                               */
 #   endif
     ptr_t limit;
+
+    if (GC_dont_push_stack)
+        return arg;
 
 #   define SLOP 400
         /* Extra bytes we clear every time.  This clears our own        */

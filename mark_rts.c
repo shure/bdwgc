@@ -775,6 +775,8 @@ GC_INNER void GC_push_roots(GC_bool all, ptr_t cold_gc_frame)
      * This is usually done by saving the current context on the
      * stack, and then just tracing from the stack.
      */
+    extern GC_bool GC_dont_push_stack;
+    if (!GC_dont_push_stack)
       GC_push_regs_and_stack(cold_gc_frame);
 
     if (GC_push_other_roots != 0) (*GC_push_other_roots)();
