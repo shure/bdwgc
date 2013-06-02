@@ -1,5 +1,11 @@
 #!/bin/sh
 
+if [ ! -d libatomic_ops ]; then
+    wget http://www.hpl.hp.com/research/linux/atomic_ops/download/libatomic_ops-7.2d.tar.gz
+    tar -xzf libatomic_ops-7.2d.tar.gz
+    mv libatomic_ops-7.2 libatomic_ops
+fi
+
 make distclean
 
 if [ `uname -m` = "i686" ]; then
